@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
   animations: [moveIn(), fallIn()],
   host: {'[@moveIn]': ''}
 })
-export class EmailComponent {
+export class EmailComponent implements OnInit {
 
     state: string = '';
     error: any;
@@ -28,6 +28,8 @@ export class EmailComponent {
         err => reject(err));
     });
   }
-
+  
+  ngOnInit() {
+  }
 
 }
