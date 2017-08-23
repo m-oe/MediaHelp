@@ -8,6 +8,7 @@ import { HauptSeiteComponent } from './haupt-seite/haupt-seite.component';
 import { SpeechreservierungComponent } from './speechreservierung/speechreservierung.component';
 import { MediahinzufuegenbuttonComponent } from './mediahinzufuegenbutton/mediahinzufuegenbutton.component';
 import { MediacontainerComponent } from './mediacontainer/mediacontainer.component';
+import { SpeakerListService } from './Domainservices//speakerList.service';
 
 const appRoutes: Routes = [
   { path: 'hauptseite', component: HauptSeiteComponent },
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [],
+  providers: [SpeakerListService],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })

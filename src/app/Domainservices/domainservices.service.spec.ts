@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DomainservicesService } from './domainservices.service';
+import { SpeakerListService } from './domainservices.service';
 
 describe('DomainservicesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DomainservicesService]
+      providers: [SpeakerListService]
     });
   });
 
-  it('should be created', inject([DomainservicesService], (service: DomainservicesService) => {
+  it('should be created', inject([SpeakerListService], (service: SpeakerListService) => {
     expect(service).toBeTruthy();
   }));
 });
