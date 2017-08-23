@@ -1,13 +1,16 @@
 <div class="row">
   <div class="col-3"></div>
   <div class="col-6">
-    <strong>SPEAKER</strong> : {{speaker.name}}
-    <button type="button" class="btn btn-success" (click)="clickReserveTime()">Platz reservieren</button>
-    <ul>
-      <li *ngFor="let teilnehmer of speakersList">{{teilnehmer.name}} </li>
-    </ul>
-    <button type="button" class="btn btn-success" (click)="freemyplace()">Platz reservieren</button>
-    
+    <div class="card">
+      <div class="card-block text-xs-center">
+        <h4 class="card-title"> <strong>SPEAKER</strong> : {{speaker.name}}</h4>
+        <ul>
+          <li *ngFor="let teilnehmer of speakersList">{{teilnehmer.name}} </li>
+        </ul>
+        <button type="button" class="btn btn-success" (click)="clickReserveTime()">Platz reservieren</button>
+        <button type="button" class="btn btn-success" (click)="freemyplace()">Platz reservieren</button>
+      </div>
+    </div>
   </div>
   <div class="col-3"></div>
 </div>

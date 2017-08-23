@@ -1,4 +1,5 @@
 import { Anwender } from "../Domainmodel/Anwender";
+import { Unterhaltungspool } from "../Domainmodel/Unterhaltungspool";
 export const speakerListmock = [
     new Anwender(1),
     new Anwender(2),
@@ -9,4 +10,6 @@ export const speakerListmock = [
     new Anwender(7),
 ]
 
-export const actualclient = new Anwender ('ich')
+export const actualclientMock = new Anwender ('ich');
+
+export const unterhaltungspoolMock : Unterhaltungspool = {anwenderGroup : speakerListmock , speaker : new Anwender('speaker')};

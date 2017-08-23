@@ -14,13 +14,17 @@ export class SpeechreservierungComponent implements OnInit {
 
   ngOnInit() {
     if (!this.speaker) {
-      this.speaker = new Anwender('1');
+      this.speakerService.getUnterhaltungspool().subscribe(
+        (pool) => {
+          this.speaker = pool.speaker;
+        }
+      )
     }
     if (!this.speakersList) {
       this.speakersList = [];
     }
-    this.speakerService.getAnwenderpool().subscribe((List) => {
-      this.speakersList = List;
+    this.speakerService.getUnterhaltungspool().subscribe((pool) => {
+      this.speakersList = pool.anwenderGroup;
     });
 
   }
@@ -34,8 +38,6 @@ export class SpeechreservierungComponent implements OnInit {
 
   freemyplace() {
     this.speakerService.getActualClient().subscribe((client) => {
-      console.log(this.speakersList.lastIndexOf(client));
-
       if (this.speakersList.lastIndexOf(client)) {
         this.speakersList = this.speakersList.filter((speaker) => {
           return this.speakersList.indexOf(speaker) !== this.speakersList.lastIndexOf(client);
