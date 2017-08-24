@@ -3,7 +3,7 @@
   <div class="col-6">
     <div class="card">
       <div class="card-block text-xs-center">
-        <h4 class="card-title"> <strong>SPEAKER</strong> : {{speaker.name}}</h4>
+        <h4 class="card-title"> <strong>SPEAKER</strong> : {{speaker.name}}  {{timer.getTimer()}}</h4>
         <ul>
           <div class="teilnehmer" *ngFor="let teilnehmer of speakersList">{{teilnehmer.name}}
             <a class="link" style="font-size: 9px ;  color: gray" *ngIf="master.id === meinClient.id" (click)="freePlace(teilnehmer)">löschen</a>

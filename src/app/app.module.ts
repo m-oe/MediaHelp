@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SimpleTimer } from 'ng2-simple-timer';
+
 
 import { HauptSeiteComponent } from './haupt-seite/haupt-seite.component';
 import { SpeechreservierungComponent } from './speechreservierung/speechreservierung.component';
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [SpeakerListService],
+  providers: [SpeakerListService,
+    SimpleTimer],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })

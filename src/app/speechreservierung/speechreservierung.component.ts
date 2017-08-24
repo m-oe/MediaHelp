@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Anwender } from '../Domainmodel/Anwender';
 import { SpeakerListService } from '../Domainservices/speakerList.service';
+import { SimpleTimer } from 'ng2-simple-timer';
+import { Observable } from 'rxjs/Rx';
 @Component({
   selector: 'app-speechreservierung',
   templateUrl: './speechreservierung.component.html',
@@ -11,8 +13,12 @@ export class SpeechreservierungComponent implements OnInit {
   speakersList: Array<Anwender>;
   meinClient: Anwender;
   master: Anwender;
+  speakerTime: any;
 
-  constructor(private speakerService: SpeakerListService) { }
+  constructor(
+    private speakerService: SpeakerListService,
+    private timer: SimpleTimer
+  ) { }
 
   ngOnInit() {
 
@@ -25,6 +31,11 @@ export class SpeechreservierungComponent implements OnInit {
     this.speakerService.getActualClient().subscribe((client) => {
       this.meinClient = client;
     })
+    this.speakerTime = Observable.timer(200,300).subscribe()
+    console.log(this.speakerTime);
+    
+  
+    
 
   }
   clickReserveTime() {
@@ -35,8 +46,8 @@ export class SpeechreservierungComponent implements OnInit {
     })
   }
 
-  freePlace(user :Anwender){
-    this.speakersList = this.speakersList.filter((u)=>{
+  freePlace(user: Anwender) {
+    this.speakersList = this.speakersList.filter((u) => {
       return u !== user;
     })
   }
@@ -54,7 +65,7 @@ export class SpeechreservierungComponent implements OnInit {
   masterModusStarten() {
     this.master = this.meinClient;
   }
-  userModusStarten(){
+  userModusStarten() {
     this.master = new Anwender('master1');
   }
 }
