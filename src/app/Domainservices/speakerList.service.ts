@@ -35,6 +35,9 @@ export class SpeakerListService {
   }
 
   setMaster(anwender : Anwender){
+    if (!this.unterhaltungspool) {
+      this.unterhaltungspool = unterhaltungspoolMock;
+    }
     this.unterhaltungspool.master= anwender;
   }
 }

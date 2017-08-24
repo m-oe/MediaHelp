@@ -9,6 +9,7 @@ import { SpeechreservierungComponent } from './speechreservierung/speechreservie
 import { MediahinzufuegenbuttonComponent } from './mediahinzufuegenbutton/mediahinzufuegenbutton.component';
 import { MediacontainerComponent } from './mediacontainer/mediacontainer.component';
 import { SpeakerListService } from './Domainservices//speakerList.service';
+import { MasterDirective } from './Directives/master.directive';
 
 const appRoutes: Routes = [
   { path: 'hauptseite', component: HauptSeiteComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     HauptSeiteComponent,
     SpeechreservierungComponent,
     MediahinzufuegenbuttonComponent,
-    MediacontainerComponent
+    MediacontainerComponent,
+    MasterDirective
   ],
   imports: [
     BrowserModule,

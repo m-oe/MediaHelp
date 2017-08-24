@@ -6,6 +6,5 @@ export class Anwender {
         this.id = id; // ToDo getID method
         this.isSpeaking = false;
         this.name= 'user ' + id;
-
     }
 }

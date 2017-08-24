@@ -10,17 +10,21 @@ export class SpeechreservierungComponent implements OnInit {
   speaker: Anwender;
   speakersList: Array<Anwender>;
   meinClient: Anwender;
-  master : Anwender;
+  master: Anwender;
 
   constructor(private speakerService: SpeakerListService) { }
 
   ngOnInit() {
-    
+
     this.speakerService.getUnterhaltungspool().subscribe((pool) => {
       this.speakersList = pool.anwenderGroup;
       this.master = pool.master;
       this.speaker = pool.speaker;
     });
+
+    this.speakerService.getActualClient().subscribe((client) => {
+      this.meinClient = client;
+    })
 
   }
   clickReserveTime() {
@@ -41,7 +45,7 @@ export class SpeechreservierungComponent implements OnInit {
     });
   }
 
-  masterModusStarten(){
-    this.speakerService.setMaster(this.meinClient);
+  masterModusStarten() {
+    this.master = this.meinClient;
   }
 }
