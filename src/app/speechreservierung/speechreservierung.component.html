@@ -5,16 +5,18 @@
       <div class="card-block text-xs-center">
         <h4 class="card-title"> <strong>SPEAKER</strong> : {{speaker.name}}</h4>
         <ul>
-          <li *ngFor="let teilnehmer of speakersList">{{teilnehmer.name}} </li>
+          <div class="teilnehmer" *ngFor="let teilnehmer of speakersList">{{teilnehmer.name}}
+            <a class="link" style="font-size: 9px ;  color: gray" *ngIf="master.id === meinClient.id" (click)="freePlace(teilnehmer)">löschen</a>
+          </div>
         </ul>
         <button type="button" class="btn btn-success" (click)="clickReserveTime()">Platz reservieren</button>
         <button type="button" class="btn btn-success" (click)="freemyplace()">Platz reservieren</button>
       </div>
     </div>
   </div>
-  <div class="col-3"></div>
-  <span *ngIf="master.id === meinClient.id" class="label label-default">MASTER MODUS</span>
- <button type="button" class="btn btn-danger btn-lg btn-block" (click)="masterModusStarten()">master Modus</button>
+  <div class="col-3">
+    <span *ngIf="master.id === meinClient.id" class="label label-default">MASTER MODUS</span>
+    <button type="button" class="btn btn-danger btn-lg btn-block" (click)="masterModusStarten()">master Modus</button>
+    <button type="button" class="btn btn-default btn-lg btn-block" (click)="userModusStarten()">user Modus</button>
+  </div>
 </div>
-
-

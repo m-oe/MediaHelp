@@ -35,6 +35,12 @@ export class SpeechreservierungComponent implements OnInit {
     })
   }
 
+  freePlace(user :Anwender){
+    this.speakersList = this.speakersList.filter((u)=>{
+      return u !== user;
+    })
+  }
+
   freemyplace() {
     this.speakerService.getActualClient().subscribe((client) => {
       if (this.speakersList.lastIndexOf(client)) {
@@ -47,5 +53,8 @@ export class SpeechreservierungComponent implements OnInit {
 
   masterModusStarten() {
     this.master = this.meinClient;
+  }
+  userModusStarten(){
+    this.master = new Anwender('master1');
   }
 }

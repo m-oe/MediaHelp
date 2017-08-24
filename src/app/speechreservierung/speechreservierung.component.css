@@ -1,0 +1,6 @@
+.teilnehmer:hover {
+    background-color: gainsboro;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+}
