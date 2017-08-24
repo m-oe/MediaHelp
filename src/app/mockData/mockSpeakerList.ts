@@ -10,6 +10,5 @@ export const speakerListmock = [
     new Anwender(7),
 ]
 
-export const actualclientMock = new Anwender ('ich');
-
-export const unterhaltungspoolMock : Unterhaltungspool = {anwenderGroup : speakerListmock , speaker : new Anwender('speaker')};
+export const actualclientMock = new Anwender('ich');
+export const unterhaltungspoolMock: Unterhaltungspool = { anwenderGroup: speakerListmock, speaker: new Anwender('speaker'), master: new Anwender('master') };

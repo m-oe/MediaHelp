@@ -9,22 +9,17 @@ import { SpeakerListService } from '../Domainservices/speakerList.service';
 export class SpeechreservierungComponent implements OnInit {
   speaker: Anwender;
   speakersList: Array<Anwender>;
-  client: Anwender;
+  meinClient: Anwender;
+  master : Anwender;
+
   constructor(private speakerService: SpeakerListService) { }
 
   ngOnInit() {
-    if (!this.speaker) {
-      this.speakerService.getUnterhaltungspool().subscribe(
-        (pool) => {
-          this.speaker = pool.speaker;
-        }
-      )
-    }
-    if (!this.speakersList) {
-      this.speakersList = [];
-    }
+    
     this.speakerService.getUnterhaltungspool().subscribe((pool) => {
       this.speakersList = pool.anwenderGroup;
+      this.master = pool.master;
+      this.speaker = pool.speaker;
     });
 
   }
@@ -46,4 +41,7 @@ export class SpeechreservierungComponent implements OnInit {
     });
   }
 
+  masterModusStarten(){
+    this.speakerService.setMaster(this.meinClient);
+  }
 }

@@ -11,12 +11,16 @@ export class SpeakerListService {
   constructor() { }
 
   getSpeakerList() {
+    //  BACKEND
     if (!this.speakerlist) {
       return Observable.of(speakerListmock);
     }
   }
 
+ 
+
   getUnterhaltungspool() {
+    // BACKEND 
     if (!this.unterhaltungspool) {
       return Observable.of(unterhaltungspoolMock);
     }
@@ -24,8 +28,13 @@ export class SpeakerListService {
   }
 
   getActualClient() {
+    
     if (!this.actualCient) {
       return Observable.of(actualclientMock);
     }
+  }
+
+  setMaster(anwender : Anwender){
+    this.unterhaltungspool.master= anwender;
   }
 }
