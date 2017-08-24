@@ -14,6 +14,7 @@ export class SpeechreservierungComponent implements OnInit {
   meinClient: Anwender;
   master: Anwender;
   speakerTime: any;
+  time: number = 0;
 
   constructor(
     private speakerService: SpeakerListService,
@@ -31,11 +32,8 @@ export class SpeechreservierungComponent implements OnInit {
     this.speakerService.getActualClient().subscribe((client) => {
       this.meinClient = client;
     })
-    this.speakerTime = Observable.timer(200,300).subscribe()
-    console.log(this.speakerTime);
     
-  
-    
+    this.timer.subscribe('1sec', () => this.iterate())
 
   }
   clickReserveTime() {
@@ -45,7 +43,11 @@ export class SpeechreservierungComponent implements OnInit {
       }
     })
   }
-
+  iterate() {
+    this.time++;
+    console.log(this.time);
+    
+  }
   freePlace(user: Anwender) {
     this.speakersList = this.speakersList.filter((u) => {
       return u !== user;
