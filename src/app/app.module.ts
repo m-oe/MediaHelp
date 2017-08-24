@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleTimer } from 'ng2-simple-timer';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HauptSeiteComponent } from './haupt-seite/haupt-seite.component';
 import { SpeechreservierungComponent } from './speechreservierung/speechreservierung.component';
@@ -33,6 +33,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgbModule,
 
     RouterModule.forRoot(

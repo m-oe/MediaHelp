@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Anwender } from '../Domainmodel/Anwender';
 import { SpeakerListService } from '../Domainservices/speakerList.service';
-import { SimpleTimer } from 'ng2-simple-timer';
 import { Observable } from 'rxjs/Rx';
+import { NgModel } from '@angular/forms';
+const INITIALTIME = 10;
 @Component({
   selector: 'app-speechreservierung',
   templateUrl: './speechreservierung.component.html',
   styleUrls: ['./speechreservierung.component.css']
 })
+
 export class SpeechreservierungComponent implements OnInit {
   speaker: Anwender;
   speakersList: Array<Anwender>;
   meinClient: Anwender;
   master: Anwender;
-  speakerTime: any;
-  time: number = 0;
+  time: number = 5;
+  initialTime: number = INITIALTIME;
+  pause: Boolean = false;
 
   constructor(
     private speakerService: SpeakerListService,
-    private timer: SimpleTimer
   ) { }
 
   ngOnInit() {
@@ -26,14 +28,12 @@ export class SpeechreservierungComponent implements OnInit {
     this.speakerService.getUnterhaltungspool().subscribe((pool) => {
       this.speakersList = pool.anwenderGroup;
       this.master = pool.master;
-      this.speaker = pool.speaker;
+      this.speaker = pool.anwenderGroup[0] || pool.master
     });
 
     this.speakerService.getActualClient().subscribe((client) => {
       this.meinClient = client;
     })
-    
-    this.timer.subscribe('1sec', () => this.iterate())
 
   }
   clickReserveTime() {
@@ -43,11 +43,20 @@ export class SpeechreservierungComponent implements OnInit {
       }
     })
   }
-  iterate() {
-    this.time++;
-    console.log(this.time);
-    
+  iterateSpeakers() {
+    if (!this.pause) {
+      this.time--;
+      if (this.time === 0) {
+        console.log(this.initialTime);
+
+        this.time = this.initialTime;
+        this.assignToNextSpeaker();
+      }
+
+    }
+
   }
+
   freePlace(user: Anwender) {
     this.speakersList = this.speakersList.filter((u) => {
       return u !== user;
@@ -70,4 +79,22 @@ export class SpeechreservierungComponent implements OnInit {
   userModusStarten() {
     this.master = new Anwender('master1');
   }
+
+  assignToNextSpeaker() {
+    this.time = this.initialTime || INITIALTIME;
+    if (this.speakersList[0]) {
+      this.speaker = this.speakersList[0];
+      this.speakersList = this.speakersList.filter((speak) => {
+        return this.speakersList.indexOf(speak) !== 0;
+      })
+    }
+  }
+  startMeeting() {
+    this.pause = false;
+    Observable.timer(0, 1000).subscribe(() => this.iterateSpeakers())
+  }
+  pauseMeeting() {
+    this.pause = true;
+  }
+
 }
