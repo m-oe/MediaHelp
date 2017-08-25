@@ -3,7 +3,7 @@ import { Anwender } from '../Domainmodel/Anwender';
 import { SpeakerListService } from '../Domainservices/speakerList.service';
 import { Observable } from 'rxjs/Rx';
 import { NgModel } from '@angular/forms';
-const INITIALTIME = 10;
+const INITIALTIME = 120;
 @Component({
   selector: 'app-speechreservierung',
   templateUrl: './speechreservierung.component.html',
@@ -15,9 +15,9 @@ export class SpeechreservierungComponent implements OnInit {
   speakersList: Array<Anwender>;
   meinClient: Anwender;
   master: Anwender;
-  time: number = 5;
+  time: number = 120;
   initialTime: number = INITIALTIME;
-  pause: Boolean = false;
+  pause: Boolean = true;
 
   constructor(
     private speakerService: SpeakerListService,
@@ -35,6 +35,8 @@ export class SpeechreservierungComponent implements OnInit {
       this.meinClient = client;
     })
 
+    Observable.timer(0, 1000).subscribe(() => this.iterateSpeakers())
+    
   }
   clickReserveTime() {
     this.speakerService.getActualClient().subscribe((client) => {
@@ -91,7 +93,6 @@ export class SpeechreservierungComponent implements OnInit {
   }
   startMeeting() {
     this.pause = false;
-    Observable.timer(0, 1000).subscribe(() => this.iterateSpeakers())
   }
   pauseMeeting() {
     this.pause = true;

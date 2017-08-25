@@ -3,16 +3,11 @@ import { Unterhaltungspool } from "../Domainmodel/Unterhaltungspool";
 export const speakerListmock = [
     new Anwender('Murat'),
     new Anwender('Fedi'),
-    new Anwender('Berkan'),
-    new Anwender('Sergej'), 
-    new Anwender('Murat'),
     new Anwender('Fedi'),
     new Anwender('Berkan'),
     new Anwender('Sergej'), 
-    new Anwender('Murat'),
-    new Anwender('Fedi'),
-    new Anwender('Berkan'),
-    new Anwender('Sergej'),
+    
+    
 
 ]
 

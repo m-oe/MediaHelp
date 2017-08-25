@@ -1,25 +1,32 @@
 <div class="row">
-  <div class="col-3"></div>
-  <div class="col-6">
+  <div class="card" style="position: fixed; z-index: 12">
+    <h4 class="card-title "> <strong>SPEAKER</strong> : {{speaker.id}} <i class="time">  Zeit: {{time}}</i></h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
     <div class="card">
       <div class="card-block text-xs-center">
-        <h4 class="card-title "> <strong>SPEAKER</strong> : {{speaker.id}} <i class="time">  Zeit: {{time}}</i></h4>
         <ul>
-          <div class="teilnehmer" *ngFor="let teilnehmer of speakersList">{{teilnehmer.id}}
-            <a class="link" style="font-size: 9px ;  color: gray" *ngIf="master.id === meinClient.id" (click)="freePlace(teilnehmer)">löschen</a>
+          <div class="teilnehmer"  style="font-size: 3em "*ngFor="let teilnehmer of speakersList">{{teilnehmer.id}}
+            <a class="link" style="font-size: 15px ;  color: gray" *ngIf="master.id === meinClient.id" (click)="freePlace(teilnehmer)">löschen</a>
           </div>
         </ul>
         <button type="button" class="btn btn-success btn-block " (click)="clickReserveTime()">Redezeit reservieren</button>
-        <button type="button" class="btn btn-danger  btn-block" (click)="freemyplace()">Platz stornieren</button>
-        <input *ngIf="master.id === meinClient.id" type="number" [(ngModel)] = "initialTime" class="form-control" >
-        <button type="button" class="btn btn-default btn-block" *ngIf="master.id === meinClient.id" (click)="assignToNextSpeaker()"> nextSpeaker </button>
+        <button type="button" class="btn btn-danger  btn-block" (click)="freemyplace()">Redezeit stornieren</button>
+        <input *ngIf="master.id === meinClient.id" type="number" [(ngModel)]="initialTime" class="form-control">
+        <button type="button" class="btn btn-default btn-block" *ngIf="master.id === meinClient.id" (click)="assignToNextSpeaker()"> next Speaker  ( Klappe zu )</button>
         <button *ngIf="master.id === meinClient.id" type="button" class="btn btn-warning btn-block" (click)="pauseMeeting()">pause</button>
         <button *ngIf="master.id === meinClient.id" type="button" class="btn btn-warning btn-block" (click)="startMeeting()">Starten</button>
       </div>
     </div>
+    <div class="col-2">
+
+    </div>
   </div>
-  <div class="col-3">
-    <button type="button" class="btn btn-danger btn-lg btn-block " (click)="masterModusStarten()">master Modus</button>
-    <button type="button" class="btn btn-default btn-lg btn-block " (click)="userModusStarten()">user Modus</button>
-  </div>
+</div>
+<div class="row">
+  <button type="button" class="btn btn-default btn-lg btn-block " (click)="masterModusStarten()">master Modus</button>
+  <button type="button" class="btn btn-default btn-lg btn-block " (click)="userModusStarten()">user Modus</button>
 </div>
